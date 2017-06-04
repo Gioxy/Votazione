@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="stylesheets/materialize.css" media="screen,projection">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="javascripts/materialize.js"></script>
+    <script type="text/javascript" src="javascripts/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="background-color:#008250">
+  <p id="titolo" class="center-align" style="font-size:35px;color:white">Pagina di Accesso Admin</p>
+  <div class="center-align">
+    <a class="waves-effect waves-light btn pulse" style="margin-top:15%" href="#modal1" id="login">Login</a>
+  </div>
+  <div class="modal modal-fixed-footer" id="modal1">
+    <div class="modal-content">
+      <div style="background-color:#4db6ac; padding:3%; color:white;border: 2 px solid; border-radius: 15px; padding: 10px 15px;">
+        <h4 class="center-align">Login</h4>
+      </div>
+      <form>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s8"><i class="material-icons prefix">perm_identity</i> 
+                <input id="Anick" class="validate" id="icon_prefix" type="text"> 
+                <label for="icon_prefix">Nickname</label>
+              </div>
+              <div class="input-field col s8"><i class="material-icons prefix">vpn_key</i> 
+                <input id="Apasswd" class="validate" id="icon_prefix" type="password"> 
+                <label for="icon_prefix">Password</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">  
+        <a id="btnAdmin" class="modal-action modal-close waves-effect waves-light btn" style="margin-right:2%">Accedi</a>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="container">
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+       2017 Developed by Salmaso Gioele and Lodovici Marco
+      <a class="grey-text text-lighten-4 right" href="http://materializecss.com/getting-started.html">Materialize Css</a>
+      </div>
+    </div>
+  </footer>
+</body>
