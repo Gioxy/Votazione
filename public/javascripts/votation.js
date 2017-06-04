@@ -6,22 +6,17 @@ $(document).ready(function () {
       $(location).attr("href","/login");
     }
     $("#utente").text(data);
-    //alert(data);
     nomeUt=data;
-    //alert(nomeUt);
   });
-  // alert(nomeUt);
   $("#logout").click(logout);
   $("#vota").click(vota);
   $("#risultati").click(aggiorna);
 });
 
 function vota(){
-  //var voto = $("input:checked").val();
-  //alert($("input:checked").val());
   $.post("/sendVoto",{
     voto: $("input:checked").val(),
-    nickname: nomeUt//$("#utente").val()//questo è sbagliato; passa al server una stringa vuota
+    nickname: nomeUt
   },function(data){
     if(data=="votoOK")
       Materialize.toast('Votazione effetuata con successo', 4000,'rounded');
@@ -34,10 +29,10 @@ function vota(){
 
 function aggiorna(){
   $.get("/aggiorna",function(data){
-    $("#rosso").text((data.votoR*100)/data.votiTot+"%");
-    $("#blu").text((data.votoB*100)/data.votiTot+"%");
-    $("#verde").text((data.votoG*100)/data.votiTot+"%");
-    $("#croix").text((data.votoAstenuto*100)/data.votiTot+"%");
+    $("#rosso").text(Math.round((data.votoR*100)/data.votiTot)+"%");
+    $("#blu").text(Math.round((data.votoB*100)/data.votiTot)+"%");
+    $("#verde").text(Math.round((data.votoG*100)/data.votiTot)+"%");
+    $("#croix").text(Math.round((data.votoAstenuto*100)/data.votiTot)+"%");
   })
 }
 
