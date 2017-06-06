@@ -57,7 +57,6 @@ function accedi(){
 function registra(){
   if($("#Rnick").val()==="" || $("#Rpasswd").val()==="")
     Materialize.toast('Nickname e password devono contenere almeno un carattere', 4000,'rounded');
-    //alert("Il nickname e la password devono contenere almeno un carattere")
     else{
   if($("#Rpasswd").val().charAt(0)===" " || $("#Rnick").val().charAt(0)===" ")
     Materialize.toast('il primo carattere non può essere uno spazio', 4000,'rounded')

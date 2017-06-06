@@ -17,10 +17,6 @@ router.get('/', function(req, res, next) {
 router.get('/login',(req,res,next)=>{
   res.render('LogProgetto');
 })
-router.get('/modals',(req,res)=>{
-  res.render('provaModals');
-})
-
 router.get("/adminPage",(req,res)=>{
   res.render("adminPage");
 })
@@ -87,14 +83,6 @@ router.get('/getNome',(req,res)=>{
   res.send(nick);
   nick="";
 })
-
-router.get('/andamento',(req,res)=>{
-  res.render('andamento');
-})
-router.get("/prova",(req,res)=>{
-  res.render("prova");
-})
-
 router.post("/logout",(req,res)=>{
   nick=req.body.nick;
   console.log(nick);
@@ -135,11 +123,6 @@ router.post('/getLogin',(req,res)=>{
   }
   res.send(logged);
 })
-
-//rimuovere un utente per adminPage
-// if(myObj.utenti[i].nickname==nome)
-//   myObj.utenti.splice(i//indice dell'array,1);
-///////////////////
 
 router.post("/adminLog",(req,res)=>{
   var adminname=req.body.nickname;
