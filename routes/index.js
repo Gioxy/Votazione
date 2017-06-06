@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var myObj={utenti:[{nickname:"admin",password:"IeThio8l",voto:""}]};
+var myObj={utenti:[{nickname:"admin",password:"kappa",voto:""}]};
 var voti={"votiTot":0, "votoR":0, "votoB":0, "votoG":0, "votoAstenuto":0};
 var logged=false;
 var register=false;
 var nick;
 var adminLog=false;
+var AdNick;
+var rim=false;
 
 
 router.get('/', function(req, res, next) {
@@ -17,11 +19,52 @@ router.get('/login',(req,res,next)=>{
 router.get('/modals',(req,res)=>{
   res.render('provaModals');
 })
+
+router.get("/adminPage",(req,res)=>{
+  res.render("adminPage");
+})
+
+router.post("/rimuovi",(req,res)=>{
+  var utenteRim=req.body.nick;
+  console.log(utenteRim);
+  for(i=0;i<myObj.utenti[i].nickname;i++){
+    console.log(myObj.utenti[i].nickname);
+    if(myObj.utenti[i].nickname==utenteRim){
+      myObj.utenti.splice(i,1);
+      rim=true;
+      break;
+    }
+  }
+  res.send(rim);
+  // console.log(rim);
+  // if(rim==false){
+  //   res.send(rim);
+  // }
+  // rim=false;
+  // if(myObj.utenti[i].nickname==nome)
+  //   myObj.utenti.splice(i//indice dell'array,1);
+})
+
+router.get("/manage",(req,res)=>{
+  res.send(myObj);
+})
+
+router.post('/admin',(req,res)=>{
+  var ok=req.body.ok;
+  var id=req.body.idUser;
+  Adnick=req.body.nickname;
+  if(ok){
+    res.send(ok);
+    router.get("/adminControl"+id,(req,res)=>{
+      res.render("adminControl");
+    })
+  }
+})
+
 router.post('/votazione',(req,res)=>{
   var ok=req.body.ok;
   var id=req.body.idUser;
   nick=req.body.nickname;
-  //console.log(nick);
   if(ok){
     res.send(ok);
     router.get('/votazione'+id,(req,res)=>{
@@ -92,8 +135,6 @@ router.post('/getLogin',(req,res)=>{
 router.post("/adminLog",(req,res)=>{
   var adminname=req.body.nickname;
   var adminpass=req.body.password;
-  console.log(adminpass);
-  console.log(adminname);
   for(i=0;i < myObj.utenti.length;i++){
     if(myObj.utenti[i].nickname== adminname && adminname=="admin" && myObj.utenti[i].password== adminpass){
       adminLog=true;
@@ -104,10 +145,6 @@ router.post("/adminLog",(req,res)=>{
     }
   }
   res.send(adminLog);
-})
-
-router.get("/adminPage",(req,res)=>{
-  res.render("adminPage");
 })
 
 router.post("/sendVoto",(req,res)=>{

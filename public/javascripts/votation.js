@@ -29,10 +29,14 @@ function vota(){
 
 function aggiorna(){
   $.get("/aggiorna",function(data){
-    $("#rosso").text(Math.round((data.votoR*100)/data.votiTot)+"%");
-    $("#blu").text(Math.round((data.votoB*100)/data.votiTot)+"%");
-    $("#verde").text(Math.round((data.votoG*100)/data.votiTot)+"%");
-    $("#croix").text(Math.round((data.votoAstenuto*100)/data.votiTot)+"%");
+    if(data.votiTot==0)
+      Materialize.toast('Risultati non disponibili', 4000,'rounded');
+      else{
+        $("#rosso").text(Math.round((data.votoR*100)/data.votiTot)+"%");
+        $("#blu").text(Math.round((data.votoB*100)/data.votiTot)+"%");
+        $("#verde").text(Math.round((data.votoG*100)/data.votiTot)+"%");
+        $("#croix").text(Math.round((data.votoAstenuto*100)/data.votiTot)+"%");
+      }
   })
 }
 

@@ -11,26 +11,24 @@ $(document).ready(function () {
 });
 
 function adminLog(){
-
-  alert($("#Anick").val());
-  alert($("#Apasswd").val());
   $.post("/adminLog",{
     nickname: $("#Anick").val(),
     password: $("#Apasswd").val()
   },function(data){
     if(data==false)
       Materialize.toast('Nome admin o password errato', 4000,'rounded');
-    if(data)
-      alert("admin loggato");
-      // else{
-      //   $.post("/admin"),{
-      //     ok:true,
-      //     nickname: $("#Anick").val()
-      //   },function(data){
-      //     if(data)
-      //       $(location).attr("href","/adminPage");
-      //   }
-      // }
+      else{
+        var id=Math.random().toString();
+        $.post("/admin", {
+          ok: true,
+          idUser: id,
+          nickname: $("#Anick").val()
+        },function(data){
+          if(data){
+            $(location).attr("href","/adminControl"+id);
+          }
+        })
+      }
   })
 }
 
@@ -41,7 +39,6 @@ function accedi(){
   },function(data){
     if(data===false)
     Materialize.toast('Nome utente o password errato', 4000,'rounded');
-      //alert("Nome utente o password sbagliati");
       else {
         var id=Math.random().toString();
         $.post("/votazione", {
@@ -72,10 +69,8 @@ function registra(){
     function(data){
       if(data===false)
         Materialize.toast('Nickname già in uso. Inserisci un altro nickname', 4000,'rounded')
-        //alert("Nickname non disponibile");
         else {
           setTimeout(function(){
-              // alert("Registrazione di "+data+" avvenuta con successo");
               Materialize.toast('Utente '+data+' registrato con successo', 4000,'rounded')
           }, 500);
         }
