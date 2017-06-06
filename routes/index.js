@@ -27,7 +27,7 @@ router.get("/adminPage",(req,res)=>{
 router.post("/rimuovi",(req,res)=>{
   var utenteRim=req.body.nick;
   console.log(utenteRim);
-  for(i=0;i<myObj.utenti[i].nickname;i++){
+  for(i=0;i<myObj.utenti.length;i++){
     console.log(myObj.utenti[i].nickname);
     if(myObj.utenti[i].nickname==utenteRim){
       myObj.utenti.splice(i,1);
@@ -36,13 +36,7 @@ router.post("/rimuovi",(req,res)=>{
     }
   }
   res.send(rim);
-  // console.log(rim);
-  // if(rim==false){
-  //   res.send(rim);
-  // }
-  // rim=false;
-  // if(myObj.utenti[i].nickname==nome)
-  //   myObj.utenti.splice(i//indice dell'array,1);
+  rim=false;
 })
 
 router.get("/manage",(req,res)=>{
