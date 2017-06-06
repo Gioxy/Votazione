@@ -8,6 +8,7 @@ var nick;
 var adminLog=false;
 var AdNick;
 var rim=false;
+var aId;
 
 
 router.get('/', function(req, res, next) {
@@ -26,16 +27,30 @@ router.get("/adminPage",(req,res)=>{
 
 router.post("/rimuovi",(req,res)=>{
   var utenteRim=req.body.nick;
-  console.log(utenteRim);
   for(i=0;i<myObj.utenti.length;i++){
-    console.log(myObj.utenti[i].nickname);
     if(myObj.utenti[i].nickname==utenteRim){
+      if(myObj.utenti[i].voto=="red"){
+        voti.votiTot--;
+        voti.votoR--;
+      }
+      if(myObj.utenti[i].voto=="blue"){
+        voti.votiTot--;
+        voti.votoB--;
+      }
+      if(myObj.utenti[i].voto=="green"){
+        voti.votiTot--;
+        voti.votoG--;
+      }
+      if(myObj.utenti[i].voto=="astenuto"){
+        voti.votiTot--;
+        voti.votoAstenuto--;
+      }
       myObj.utenti.splice(i,1);
       rim=true;
       break;
     }
   }
-  res.send(rim);
+  res.send({rim,aId});
   rim=false;
 })
 
@@ -45,11 +60,11 @@ router.get("/manage",(req,res)=>{
 
 router.post('/admin',(req,res)=>{
   var ok=req.body.ok;
-  var id=req.body.idUser;
+  aId=req.body.idUser;
   Adnick=req.body.nickname;
   if(ok){
     res.send(ok);
-    router.get("/adminControl"+id,(req,res)=>{
+    router.get("/adminControl"+aId,(req,res)=>{
       res.render("adminControl");
     })
   }
