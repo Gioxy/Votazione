@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     $(".modal").modal({
-      dismissible:false
+      // dismissible:false
     });
     $("#c").click(prova);
     $("#btnRegistra").click(registra);
