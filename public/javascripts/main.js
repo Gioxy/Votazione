@@ -3,6 +3,7 @@ $(document).ready(function () {
     $(".modal").modal({
       // dismissible:false
     });
+
     $("#btnRegistra").click(registra);
     $("#btnAccedi").click(accedi);
     $("#btnAdmin").click(adminLog);
@@ -75,13 +76,3 @@ function registra(){
   }
 }
 }
-
-
-function prova(){
-    setTimeout(function () {
-      $.get("/getLogged",function(data){
-        $("#feccia").text(data);
-      })
-      prova();
-    }, 1000);
-};
