@@ -79,13 +79,11 @@ router.post('/votazione',(req,res)=>{
 })
 
 router.get('/getNome',(req,res)=>{
-  console.log(nick);
   res.send(nick);
   nick="";
 })
 router.post("/logout",(req,res)=>{
   nick=req.body.nick;
-  console.log(nick);
   res.send(nick);
 })
 
@@ -104,7 +102,6 @@ router.post('/getRegistration',(req,res)=>{
   if(register===true){
     var oj={nickname : username, password : userpass, voto:""};
     myObj.utenti.push(oj);
-    console.log(myObj.utenti);
     res.send(username);
   }
 })
@@ -112,7 +109,6 @@ router.post('/getLogin',(req,res)=>{
   var username=req.body.nickname;
   var userpass=req.body.password;
   for(i=0;i < myObj.utenti.length;i++){
-    console.log(myObj.utenti[i].nickname+" "+myObj.utenti[i].password);
     if(myObj.utenti[i].nickname== username && myObj.utenti[i].password== userpass){
       logged=true;
       res.send(logged);
@@ -146,8 +142,6 @@ router.post("/sendVoto",(req,res)=>{
     voto="";
   }
   var nick=req.body.nickname;
-  console.log(voto);
-  console.log(nick);
   for(i=0;i<myObj.utenti.length;i++){
     if(myObj.utenti[i].nickname==nick){
       if(myObj.utenti[i].voto=="" || myObj.utenti[i].voto==null || myObj.utenti[i].voto==undefined){
@@ -170,11 +164,9 @@ router.post("/sendVoto",(req,res)=>{
       }
     }
   }
-  console.log(voti.votiTot);
 })
 
 router.get("/aggiorna",(req,res)=>{
-  console.log(voti);
   res.send(voti);
 })
 

@@ -1,10 +1,8 @@
-//var saponetta=true;
 $(document).ready(function () {
 
     $(".modal").modal({
       // dismissible:false
     });
-    $("#c").click(prova);
     $("#btnRegistra").click(registra);
     $("#btnAccedi").click(accedi);
     $("#btnAdmin").click(adminLog);
